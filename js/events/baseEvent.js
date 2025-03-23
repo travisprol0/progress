@@ -31,7 +31,7 @@ export class BaseEvent {
           <p><strong>Event ${index + 1}</strong></p>
           <p>League: ${this.league}</p>
           ${details}
-          <button class="delete" onclick="eventManager.deleteEvent(${index})"
+          <button hidden class="delete" onclick="eventManager.deleteEvent(${index})"
             style="background:#e74c3c; color:#fff; border:none; padding:5px 10px; border-radius:3px;">
             Delete
           </button>

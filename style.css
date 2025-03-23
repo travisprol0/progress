@@ -1,119 +1,123 @@
-/* General Styles */
+/* Refactored General Styles for Mobile UI */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Roboto, 'San Francisco', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Improved font stack for cross-platform consistency [1, 2] */
   margin: 0;
   padding: 0;
-  background: #f3f4f6;
+  background-color: #f3f4f6; /* Using background-color for better specificity */
   color: #333;
+  -webkit-font-smoothing: antialiased; /* Improves font rendering on iOS */
+  -moz-osx-font-smoothing: grayscale; /* Improves font rendering on macOS */
 }
 
-/* Header */
+/* Refactored Header */
 h1 {
   text-align: center;
-  padding: 1em 0;
-  background-color: #4CAF50;
+  padding: 16px 0; /* Using 8-point grid spacing */
+  background-color: #9C27B0; /* Changed header background to purple */
+  background-image: linear-gradient(to bottom, #9C27B0, #8E24AA); /* Subtle purple gradient [13] */
   color: #fff;
   margin: 0;
+  font-size: 1.25rem; /* Slightly smaller font size for mobile */
 }
 
-/* Events List Container */
-#app {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 1em;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Dynamic Fields Container */
-#dynamicFields {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 1em;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Game Container */
+/* Refactored Events List Container */
+#app,
+#dynamicFields,
 #gameContainer {
   max-width: 600px;
-  margin: 20px auto;
-  padding: 1em;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px auto; /* Using 8-point grid spacing */
+  padding: 16px; /* Using 8-point grid spacing */
+  background-color: #fff;
+  border-radius: 12px; /* Slightly larger border-radius for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for better definition */
 }
 
-/* Form Labels */
+/* Refactored Dynamic Fields Container */
+#dynamicFields {
+  background-color: #f9f9f9;
+}
+
+/* Refactored Form Labels */
 label {
   display: block;
-  margin: 0.5em 0 0.2em;
+  margin: 12px 0 4px; /* Using 4-point grid spacing */
   font-weight: bold;
+  font-size: 0.9rem; /* Slightly smaller label font size */
+  color: #555; /* Slightly lighter label color */
 }
 
-/* Input and Select Fields */
-input, select {
+/* Refactored Input and Select Fields */
+input,
+select {
   width: 100%;
-  padding: 0.65em;
-  margin-bottom: 1em;
-  font-size: 1em;
+  padding: 12px; /* Using 8-point grid spacing */
+  margin-bottom: 16px; /* Using 8-point grid spacing */
+  font-size: 1rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px; /* Adjusted border-radius */
   box-sizing: border-box;
 }
 
-/* Inline Elements */
+/* Refactored Inline Elements */
 span {
   display: inline-block;
-  margin-bottom: 0.5em;
+  margin-bottom: 8px; /* Using 4-point grid spacing */
   font-weight: bold;
   color: #444;
+  font-size: 0.95rem; /* Slightly adjusted inline element font size */
 }
 
-/* Inline Score Section Styling */
+/* Refactored Inline Score Section Styling */
 .game-controls span + label {
   display: block;
-  margin-top: 0.5em;
+  margin-top: 12px; /* Using 4-point grid spacing */
 }
 
 .game-controls input[type="number"] {
-  width: calc(50% - 10px);
+  width: calc(50% - 12px); /* Adjusted calculation for spacing */
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 8px; /* Using 4-point grid spacing */
+  padding: 8px; /* Adjusted padding */
+  font-size: 0.9rem; /* Adjusted font size */
 }
 
-/* Focus States */
-input:focus, 
+/* Refactored Focus States */
+input:focus,
 select:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: #9C27B0; /* Changed focus highlight to purple */
+  box-shadow: 0 0 8px rgba(156, 39, 176, 0.5); /* Adjusted focus shadow color */
 }
 
-/* Button Styles */
+/* Refactored Button Styles */
 button {
-  padding: 0.6em 1em;
-  font-size: 1em;
+  padding: 10px 16px; /* Using 4 and 8-point grid spacing */
+  font-size: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px; /* Adjusted border-radius */
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Added smooth transition for hover [3, 4] */
 }
 
-/* Add Event Button */
+/* Refactored Add Event Button */
 #addEventButton {
-  background-color: #4CAF50;
+  background-color: #9C27B0; /* Changed add event button to purple */
   color: #fff;
-  margin: 20px auto;
+  margin: 24px auto; /* Using 8-point grid spacing */
   display: block;
+  /* Glassmorphism effect example [5, 6, 7] */
+  background: rgba(156, 39, 176, 0.8); /* Adjusted glassmorphism background */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #addEventButton:hover {
-  background-color: #45a049;
+  background-color: #8E24AA; /* Darker purple on hover */
 }
 
-/* Delete Button */
+/* Refactored Delete Button */
 button.delete {
   background-color: #e74c3c;
   color: #fff;
@@ -123,46 +127,48 @@ button.delete:hover {
   background-color: #c0392b;
 }
 
-/* Start Game Button */
+/* Refactored Start Game Button */
 button.startGame {
   background-color: #3498db;
   color: #fff;
-  margin-left: 10px;
+  margin-left: 8px; /* Using 4-point grid spacing */
 }
 
 button.startGame:hover {
   background-color: #2980b9;
 }
 
-/* Back Button */
+/* Refactored Back Button */
 button.backButton {
   background-color: #95a5a6;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 16px; /* Using 8-point grid spacing */
 }
 
 button.backButton:hover {
   background-color: #7f8c8d;
 }
 
-/* Progress Bars Container */
+/* Refactored Progress Bars Container */
 .progress-container {
-  margin-top: 10px;
+  margin-top: 16px; /* Using 8-point grid spacing */
 }
 
-/* Progress Bars */
-.goal-bar, 
+/* Refactored Progress Bars */
+.goal-bar,
 .prob-bar {
-  height: 20px;
-  border-radius: 4px;
+  height: 24px; /* Adjusted height for better touch target */
+  border-radius: 8px; /* Adjusted border-radius */
   text-align: center;
   color: #fff;
-  line-height: 20px;
+  line-height: 24px; /* Match height for vertical centering */
   font-weight: bold;
+  font-size: 0.85rem; /* Adjusted font size */
+  margin-bottom: 8px; /* Added margin */
 }
 
 .goal-bar {
-  background-color: #4CAF50;
+  background-color: #9C27B0; /* Changed goal bar to purple */
   width: 0%;
 }
 
@@ -170,3 +176,254 @@ button.backButton:hover {
   background-color: #2196F3;
   width: 0%;
 }
+
+/* Styling for the event list item */
+.event {
+  border: 1px solid #ddd;
+  padding: 16px; /* Using 8-point grid spacing */
+  margin-bottom: 16px; /* Using 8-point grid spacing */
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.event strong {
+  display: block;
+  margin-bottom: 8px; /* Using 4-point grid spacing */
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.event #details {
+  margin-bottom: 12px; /* Using 4-point grid spacing */
+}
+
+.event #details p {
+  margin-bottom: 4px; /* Using 4-point grid spacing */
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.event #details strong {
+  font-size: 0.9rem;
+}
+
+.event button.delete {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px; /* Adjusted padding */
+  border-radius: 8px; /* Adjusted border-radius */
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.event button.delete:hover {
+  background-color: #c0392b;
+}
+
+/* Styling for inline controls */
+#inlineControls_0 {
+  margin-top: 16px; /* Using 8-point grid spacing */
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.game-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for teams */
+  gap: 16px; /* Spacing between team sections */
+}
+
+.game-controls > div { /* Style direct children of game-controls (team1, team2) */
+  margin-bottom: 16px; /* Space between team sections */
+}
+
+.game-controls label {
+  display: block;
+  margin: 8px 0 4px; /* Adjusted label spacing */
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: normal;
+}
+
+.game-controls span {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.game-controls input[type="number"] {
+  width: 100%; /* Full width within its grid cell */
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.game-controls button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  margin-right: 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-controls button:hover {
+  background-color: #e0e0e0;
+}
+
+.game-controls select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.game-controls input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.game-controls #progressContainer {
+  grid-column: 1 / 3; /* Span across both columns */
+  margin-top: 16px;
+}
+
+.game-controls #progressContainer label {
+  margin-top: 12px;
+}
+
+/* Style the labels within the event to match the league color */
+.event label {
+  color: #333; /* Default label color */
+}
+
+.event strong {
+  color: #9C27B0; /* Set the league color to purple */
+}
+
+.event label {
+  color: #9C27B0; /* Make event labels the same color as the league */
+}
+
+/* Basic Dark Mode Implementation [8, 9, 10, 11] */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  h1 {
+    background-color: #7B1FA2; /* Darker purple for dark mode header */
+    background-image: linear-gradient(to bottom, #7B1FA2, #6A1B9A);
+    color: #fff;
+  }
+
+  #app,
+  #dynamicFields,
+  #gameContainer,
+  .event {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    border-color: #333;
+  }
+
+  #dynamicFields {
+    background-color: #272727;
+  }
+
+  .event strong {
+    color: #EA80FC; /* Lighter purple for dark mode league */
+  }
+
+  .event label {
+    color: #EA80FC; /* Make dark mode event labels match league */
+  }
+
+  .event #details p {
+    color: #ccc;
+  }
+
+  label {
+    color: #bdbdbd;
+  }
+
+  input,
+  select,
+  .game-controls input[type="number"],
+  .game-controls input[type="text"] {
+    border-color: #424242;
+    background-color: #303030;
+    color: #e0e0e0;
+  }
+
+  input:focus,
+  select:focus,
+  .game-controls input[type="number"]:focus,
+  .game-controls input[type="text"]:focus {
+    border-color: #B388FF; /* Lighter purple for dark mode focus */
+    box-shadow: 0 0 8px rgba(179, 136, 255, 0.5);
+  }
+
+  button,
+  .event button.delete,
+  .game-controls button {
+    color: #fff;
+    background-color: #444;
+    border-color: #555;
+  }
+
+  .event button.delete {
+    background-color: #c62828;
+  }
+
+  .event button.delete:hover {
+    background-color: #ad1457;
+  }
+
+  .game-controls button:hover {
+    background-color: #555;
+  }
+
+  #addEventButton {
+    background: rgba(123, 31, 162, 0.8); /* Darker purple for dark mode add button */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  button.startGame {
+    background-color: #1976D2;
+  }
+
+  button.backButton {
+    background-color: #616161;
+  }
+
+  .goal-bar {
+    background-color: #7B1FA2; /* Darker purple for dark mode goal bar */
+  }
+
+  .prob-bar {
+    background-color: #1565C0;
+  }
+}
+
+/* Consider adding more specific styles for different screen sizes using media queries */
+/* Ensure sufficient color contrast for accessibility [12, 13] */
+/* Verify touch target sizes of interactive elements (buttons, inputs) [14, 15] */
