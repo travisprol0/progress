@@ -25,7 +25,7 @@ export function showAddEventForm() {
         <label for="totalSelect">Total Type</label>
         <select id="totalSelect">
           <option value="" disabled selected>Select Total Type</option>
-          <option value="Team Total">Team Total</option>
+          <option value="Team Total" disabled>Team Total</option>
           <option value="Game Total">Game Total</option>
         </select>
         <div id="additionalFields"></div>
