@@ -54,7 +54,7 @@ export function updateNCAABGameControl(index, goalValue) {
     const score2 = parseFloat(document.getElementById(`score2_${index}`).value) || 0;
 
     // Skip calculation if any necessary values are 0
-    if (halfSelect.selectedIndex === 0  || timeInput.value.length === 0 || score1 === 0 || score2 === 0) {
+    if (halfSelect.selectedIndex === 0 || timeInput.value.length === 0 || score1 === 0 || score2 === 0) {
         console.log("Skipping calculation: Missing or incomplete input values.");
         return;
     }
@@ -80,39 +80,36 @@ export function updateNCAABGameControl(index, goalValue) {
     let adjustedTimeLeft;
 
     if (halfSelect.value === "1st") {
-        const timeLeft = (mins * 60) + (secs || 0);
+        const timeLeft = (mins * 60) + secs;
         adjustedTimeLeft = totalGameDuration - (1200 - timeLeft);
     } else {
-        adjustedTimeLeft = (mins * 60) + (secs || 0);
+        adjustedTimeLeft = (mins * 60) + secs;
     }
 
-    const elapsedTime = totalGameDuration - adjustedTimeLeft;
-
-    // Skip calculation if elapsedTime is 0
-    if (elapsedTime === 0) {
-        console.log("Skipping calculation: Elapsed time is zero.");
-        return;
-    }
-
-    const scoringRate = totalScore / elapsedTime;
-    const adjustedScoringRate = halfSelect.value === "2nd"
-        ? scoringRate * 1.1
-        : scoringRate;
-    const projectedTotal = totalScore + adjustedScoringRate * adjustedTimeLeft;
-
+    // Progress Calculation
     const goalProgress = Math.min((totalScore / goalValue) * 100, 100);
     goalBarElem.style.width = `${goalProgress}%`;
-    goalBarElem.textContent = `${Math.round(goalProgress)}%`;
+    goalBarElem.textContent = `${goalProgress.toFixed(2)}%`;
 
-    const timeFactor = Math.sqrt(adjustedTimeLeft / totalGameDuration);
-    let probability = (projectedTotal / goalValue) * 100 * timeFactor;
+    // Simplified Probability Calculation
+    const timeElapsed = totalGameDuration - adjustedTimeLeft;
+    const timeRemaining = adjustedTimeLeft / 60; // Convert to minutes
+    const pointsRemaining = goalValue - totalScore;
 
-    if (projectedTotal >= goalValue) {
-        probability += 10;
+    const scoringRate = totalScore / (timeElapsed / 60); // Points per minute based on elapsed time
+    const requiredRate = pointsRemaining / timeRemaining;
+
+    let probability;
+    if (totalScore >= goalValue) {
+        probability = 100; // Goal is met or exceeded
+    } else {
+        probability = (scoringRate >= requiredRate) 
+            ? 100 
+            : (scoringRate / requiredRate) * 100;
     }
 
-    probability = Math.max(probability, 5);
-    probability = Math.min(probability, 100);
+    // Cap probability
+    probability = Math.min(Math.max(probability, 0), 100);
 
     probBarElem.style.width = `${probability}%`;
     probBarElem.textContent = `${Math.round(probability)}%`;
