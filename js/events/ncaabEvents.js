@@ -126,29 +126,41 @@ export class NCAABGameEvent extends BaseEvent {
     const progressContainer = new ProgressContainer(index);
     const html = `
       <div class="game-controls" data-index="${index}" data-type="game">
+        <div id="team1">
         <label for="teamName1_${index}">Team 1:</label>
-        <span id="teamName1_${index}">${this.teamName1}</span>
-        <label for="score1_${index}">Score:</label>
-        <input type="number" id="score1_${index}" value="0" placeholder="Enter score">
-  
-        <label for="teamName2_${index}">Team 2:</label>
-        <span id="teamName2_${index}">${this.teamName2}</span>
-        <label for="score2_${index}">Score:</label>
-        <input type="number" id="score2_${index}" value="0" placeholder="Enter score">
-  
+          <span id="teamName1_${index}">${this.teamName1}</span>
+          <label for="score1_${index}">Score:</label>
+          <input type="number" id="score1_${index}" value="0" placeholder="Enter score">
+
+          <button id="freeThrow1">Free Throw</button>
+          <button id="twoPoints1">2 Pointer</button>
+          <button id="threePoints1">3 Pointer</button>
+        </div>  
+        
+        <div id="team2">
+          <label for="teamName2_${index}">Team 2:</label>
+          <span id="teamName2_${index}">${this.teamName2}</span>
+          <label for="score2_${index}">Score:</label>
+          <input type="number" id="score2_${index}" value="0" placeholder="Enter score">
+
+          <button id="freeThrow2">Free Throw</button>
+          <button id="twoPoints2">2 Pointer</button>
+          <button id="threePoints2">3 Pointer</button>
+        </div>
+
         <label for="halfSelect_${index}">Half:</label>
         <select id="halfSelect_${index}">
           <option value="" disabled selected>Select Half</option>
           <option value="1st">1st</option>
           <option value="2nd">2nd</option>
         </select>
-  
+    
         <label for="time_${index}">Time Remaining (MM:SS):</label>
         <input type="text" id="time_${index}" placeholder="e.g., 10:00">
-  
+
         <button id="startButton_${index}">Start</button>
         <button id="pauseButton_${index}">Pause</button>
-  
+
         ${progressContainer.render()}
       </div>
     `;
@@ -157,9 +169,26 @@ export class NCAABGameEvent extends BaseEvent {
     setTimeout(() => {
       document.getElementById(`startButton_${index}`).addEventListener("click", () => onStartClick(index, type, goalValue));
       document.getElementById(`pauseButton_${index}`).addEventListener("click", () => onPauseClick(index));
+      document.getElementById("freeThrow1").addEventListener("click", () => this.addPoints(1,1));
+      document.getElementById("twoPoints1").addEventListener("click", () => this.addPoints(1,2));
+      document.getElementById("threePoints1").addEventListener("click", () => this.addPoints(1,3));
+      document.getElementById("freeThrow2").addEventListener("click", () => this.addPoints(2,1));
+      document.getElementById("twoPoints2").addEventListener("click", () => this.addPoints(2,2));
+      document.getElementById("threePoints2").addEventListener("click", () => this.addPoints(2,3));
+
     }, 0);
   
     return html;
+  }
+
+  addPoints(team, points) {
+    const input = document.querySelector(`#team${team} input`);
+
+    if (input) {
+      const currentValue = parseInt(input.value) || 0;
+      input.value = currentValue + points
+      input.dispatchEvent(new Event("change")); // Dispatch a 'change' event
+    }
   }
   
 }
