@@ -1,12 +1,19 @@
+/* =====================================================
+   Global Styles & Resets
+===================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* Refactored General Styles for Mobile UI */
 body {
-  font-family: Roboto, 'San Francisco', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Improved font stack for cross-platform consistency [1, 2] */
+  font-family: Roboto, 'San Francisco', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Improved font stack for cross-platform consistency */
   margin: 0;
   padding: 0;
-  background-color: #f3f4f6; /* Using background-color for better specificity */
+  background-color: #f3f4f6;
   color: #333;
-  -webkit-font-smoothing: antialiased; /* Improves font rendering on iOS */
-  -moz-osx-font-smoothing: grayscale; /* Improves font rendering on macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Refactored Header */
@@ -14,10 +21,10 @@ h1 {
   text-align: center;
   padding: 16px 0; /* Using 8-point grid spacing */
   background-color: #9C27B0; /* Changed header background to purple */
-  background-image: linear-gradient(to bottom, #9C27B0, #8E24AA); /* Subtle purple gradient [13] */
+  background-image: linear-gradient(to bottom, #9C27B0, #8E24AA);
   color: #fff;
   margin: 0;
-  font-size: 1.25rem; /* Slightly smaller font size for mobile */
+  font-size: 1.25rem;
 }
 
 /* Refactored Events List Container */
@@ -25,11 +32,11 @@ h1 {
 #dynamicFields,
 #gameContainer {
   max-width: 600px;
-  margin: 16px auto; /* Using 8-point grid spacing */
-  padding: 16px; /* Using 8-point grid spacing */
+  margin: 16px auto;
+  padding: 16px;
   background-color: #fff;
-  border-radius: 12px; /* Slightly larger border-radius for a softer look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for better definition */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Refactored Dynamic Fields Container */
@@ -40,73 +47,77 @@ h1 {
 /* Refactored Form Labels */
 label {
   display: block;
-  margin: 12px 0 4px; /* Using 4-point grid spacing */
+  margin: 12px 0 4px;
   font-weight: bold;
-  font-size: 0.9rem; /* Slightly smaller label font size */
-  color: #555; /* Slightly lighter label color */
+  font-size: 0.9rem;
+  color: #555;
 }
 
 /* Refactored Input and Select Fields */
 input,
 select {
   width: 100%;
-  padding: 12px; /* Using 8-point grid spacing */
-  margin-bottom: 16px; /* Using 8-point grid spacing */
+  padding: 12px;
+  margin-bottom: 16px;
   font-size: 1rem;
   border: 1px solid #ddd;
-  border-radius: 8px; /* Adjusted border-radius */
+  border-radius: 8px;
   box-sizing: border-box;
 }
 
 /* Refactored Inline Elements */
 span {
   display: inline-block;
-  margin-bottom: 8px; /* Using 4-point grid spacing */
+  margin-bottom: 8px;
   font-weight: bold;
   color: #444;
-  font-size: 0.95rem; /* Slightly adjusted inline element font size */
+  font-size: 0.95rem;
 }
 
 /* Refactored Inline Score Section Styling */
 .game-controls span + label {
   display: block;
-  margin-top: 12px; /* Using 4-point grid spacing */
+  margin-top: 12px;
 }
 
 .game-controls input[type="number"] {
-  width: calc(50% - 12px); /* Adjusted calculation for spacing */
+  width: calc(50% - 12px);
   display: inline-block;
-  margin-right: 8px; /* Using 4-point grid spacing */
-  padding: 8px; /* Adjusted padding */
-  font-size: 0.9rem; /* Adjusted font size */
+  margin-right: 8px;
+  padding: 8px;
+  font-size: 0.9rem;
 }
 
 /* Refactored Focus States */
 input:focus,
 select:focus {
   outline: none;
-  border-color: #9C27B0; /* Changed focus highlight to purple */
-  box-shadow: 0 0 8px rgba(156, 39, 176, 0.5); /* Adjusted focus shadow color */
+  border-color: #9C27B0;
+  box-shadow: 0 0 8px rgba(156, 39, 176, 0.5);
 }
 
-/* Refactored Button Styles */
+/* Refactored Button Styles (Base Rule; will be overridden later) */
 button {
-  padding: 10px 16px; /* Using 4 and 8-point grid spacing */
+  padding: 10px 16px;
   font-size: 1rem;
   border: none;
-  border-radius: 8px; /* Adjusted border-radius */
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Added smooth transition for hover [3, 4] */
+  transition: background-color 0.3s ease;
 }
+
+/* =====================================================
+   Component-Specific Styles
+===================================================== */
 
 /* Refactored Add Event Button */
 #addEventButton {
-  background-color: #9C27B0; /* Changed add event button to purple */
+  background-color: #9C27B0;
   color: #fff;
-  margin: 24px auto; /* Using 8-point grid spacing */
+  margin: 24px auto;
   display: block;
-  /* Glassmorphism effect example [5, 6, 7] */
-  background: rgba(156, 39, 176, 0.8); /* Adjusted glassmorphism background */
+  /* Glassmorphism effect example */
+  background: rgba(156, 39, 176, 0.8);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -114,7 +125,7 @@ button {
 }
 
 #addEventButton:hover {
-  background-color: #8E24AA; /* Darker purple on hover */
+  background-color: #8E24AA;
 }
 
 /* Refactored Delete Button */
@@ -129,9 +140,10 @@ button.delete:hover {
 
 /* Refactored Start Game Button */
 button.startGame {
-  background-color: #3498db;
+  background: rgba(123, 31, 162, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   color: #fff;
-  margin-left: 8px; /* Using 4-point grid spacing */
+  margin-left: 8px;
 }
 
 button.startGame:hover {
@@ -142,7 +154,7 @@ button.startGame:hover {
 button.backButton {
   background-color: #95a5a6;
   color: #fff;
-  margin-bottom: 16px; /* Using 8-point grid spacing */
+  margin-bottom: 16px;
 }
 
 button.backButton:hover {
@@ -151,24 +163,24 @@ button.backButton:hover {
 
 /* Refactored Progress Bars Container */
 .progress-container {
-  margin-top: 16px; /* Using 8-point grid spacing */
+  margin-top: 16px;
 }
 
 /* Refactored Progress Bars */
 .goal-bar,
 .prob-bar {
-  height: 24px; /* Adjusted height for better touch target */
-  border-radius: 8px; /* Adjusted border-radius */
+  height: 24px;
+  border-radius: 8px;
   text-align: center;
   color: #fff;
-  line-height: 24px; /* Match height for vertical centering */
+  line-height: 24px;
   font-weight: bold;
-  font-size: 0.85rem; /* Adjusted font size */
-  margin-bottom: 8px; /* Added margin */
+  font-size: 0.85rem;
+  margin-bottom: 8px;
 }
 
 .goal-bar {
-  background-color: #9C27B0; /* Changed goal bar to purple */
+  background-color: #9C27B0;
   width: 0%;
 }
 
@@ -180,25 +192,25 @@ button.backButton:hover {
 /* Styling for the event list item */
 .event {
   border: 1px solid #ddd;
-  padding: 16px; /* Using 8-point grid spacing */
-  margin-bottom: 16px; /* Using 8-point grid spacing */
+  padding: 16px;
+  margin-bottom: 16px;
   border-radius: 8px;
   background-color: #fff;
 }
 
 .event strong {
   display: block;
-  margin-bottom: 8px; /* Using 4-point grid spacing */
+  margin-bottom: 8px;
   font-size: 1.1rem;
   color: #333;
 }
 
 .event #details {
-  margin-bottom: 12px; /* Using 4-point grid spacing */
+  margin-bottom: 12px;
 }
 
 .event #details p {
-  margin-bottom: 4px; /* Using 4-point grid spacing */
+  margin-bottom: 4px;
   color: #666;
   font-size: 0.9rem;
 }
@@ -211,8 +223,8 @@ button.backButton:hover {
   background-color: #e74c3c;
   color: #fff;
   border: none;
-  padding: 8px 16px; /* Adjusted padding */
-  border-radius: 8px; /* Adjusted border-radius */
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -224,24 +236,24 @@ button.backButton:hover {
 
 /* Styling for inline controls */
 #inlineControls_0 {
-  margin-top: 16px; /* Using 8-point grid spacing */
+  margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid #eee;
 }
 
 .game-controls {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns for teams */
-  gap: 16px; /* Spacing between team sections */
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-.game-controls > div { /* Style direct children of game-controls (team1, team2) */
-  margin-bottom: 16px; /* Space between team sections */
+.game-controls > div {
+  margin-bottom: 16px;
 }
 
 .game-controls label {
   display: block;
-  margin: 8px 0 4px; /* Adjusted label spacing */
+  margin: 8px 0 4px;
   font-size: 0.85rem;
   color: #777;
   font-weight: normal;
@@ -256,7 +268,7 @@ button.backButton:hover {
 }
 
 .game-controls input[type="number"] {
-  width: 100%; /* Full width within its grid cell */
+  width: 100%;
   padding: 8px;
   margin-bottom: 8px;
   font-size: 0.9rem;
@@ -266,9 +278,9 @@ button.backButton:hover {
 }
 
 .game-controls button {
-  background-color: #f0f0f0;
+  background: rgba(123, 31, 162, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   color: #333;
-  border: 1px solid #ccc;
   padding: 6px 12px;
   margin-right: 8px;
   border-radius: 4px;
@@ -302,7 +314,7 @@ button.backButton:hover {
 }
 
 .game-controls #progressContainer {
-  grid-column: 1 / 3; /* Span across both columns */
+  grid-column: 1 / 3;
   margin-top: 16px;
 }
 
@@ -312,18 +324,16 @@ button.backButton:hover {
 
 /* Style the labels within the event to match the league color */
 .event label {
-  color: #333; /* Default label color */
+  color: #9C27B0;
 }
 
 .event strong {
-  color: #9C27B0; /* Set the league color to purple */
+  color: #9C27B0;
 }
 
-.event label {
-  color: #9C27B0; /* Make event labels the same color as the league */
-}
-
-/* Basic Dark Mode Implementation [8, 9, 10, 11] */
+/* =====================================================
+   Dark Mode Implementation
+===================================================== */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #121212;
@@ -331,7 +341,7 @@ button.backButton:hover {
   }
 
   h1 {
-    background-color: #7B1FA2; /* Darker purple for dark mode header */
+    background-color: #7B1FA2;
     background-image: linear-gradient(to bottom, #7B1FA2, #6A1B9A);
     color: #fff;
   }
@@ -350,11 +360,11 @@ button.backButton:hover {
   }
 
   .event strong {
-    color: #EA80FC; /* Lighter purple for dark mode league */
+    color: #EA80FC;
   }
 
   .event label {
-    color: #EA80FC; /* Make dark mode event labels match league */
+    color: #EA80FC;
   }
 
   .event #details p {
@@ -378,7 +388,7 @@ button.backButton:hover {
   select:focus,
   .game-controls input[type="number"]:focus,
   .game-controls input[type="text"]:focus {
-    border-color: #B388FF; /* Lighter purple for dark mode focus */
+    border-color: #B388FF;
     box-shadow: 0 0 8px rgba(179, 136, 255, 0.5);
   }
 
@@ -403,12 +413,13 @@ button.backButton:hover {
   }
 
   #addEventButton {
-    background: rgba(123, 31, 162, 0.8); /* Darker purple for dark mode add button */
+    background: rgba(123, 31, 162, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   button.startGame {
-    background-color: #1976D2;
+    background: rgba(123, 31, 162, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   button.backButton {
@@ -416,7 +427,7 @@ button.backButton:hover {
   }
 
   .goal-bar {
-    background-color: #7B1FA2; /* Darker purple for dark mode goal bar */
+    background-color: #7B1FA2;
   }
 
   .prob-bar {
@@ -424,6 +435,32 @@ button.backButton:hover {
   }
 }
 
-/* Consider adding more specific styles for different screen sizes using media queries */
-/* Ensure sufficient color contrast for accessibility [12, 13] */
-/* Verify touch target sizes of interactive elements (buttons, inputs) [14, 15] */
+/* =====================================================
+   New Overrides: All Buttons Purple & Timer Controls Button
+===================================================== */
+/* Force all buttons to be purple with a hover effect */
+button {
+  background-color: #9C27B0 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8E24AA !important;
+}
+
+/* Ensure the start button within timer controls takes up 80% width */
+[id^="timerControls_"] button {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+[id^="timerControls_"] {
+  width: 80%; /* Sets the width to 80% of its parent */
+  margin: 0 auto; /* Centers the div horizontally */
+}

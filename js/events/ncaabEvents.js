@@ -19,9 +19,6 @@ function updateTimeField(index, type, goalValue) {
   }
 }
 
-
-
-// Timer Start Function
 function onStartClick(index, type, goalValue) {
   const timeField = document.getElementById(`time_${index}`);
   if (!timeField) {
@@ -45,6 +42,7 @@ function onStartClick(index, type, goalValue) {
     if (totalSeconds <= 0) {
       clearInterval(timers[index]);
       alert("Time is up!");
+      showStartButton(index); // Show "Start" button when time is up
       return;
     }
 
@@ -58,6 +56,9 @@ function onStartClick(index, type, goalValue) {
     // Update progress dynamically
     updateTimeField(index, type, goalValue);
   }, 1000);
+
+  // Switch to "Pause" button
+  showPauseButton(index);
 }
 
 function onPauseClick(index) {
@@ -65,7 +66,27 @@ function onPauseClick(index) {
     clearInterval(timers[index]); // Stop the timer
     timers[index] = null; // Reset the interval reference
   }
+
+  // Switch to "Start" button
+  showStartButton(index);
 }
+
+function showStartButton(index) {
+  const controls = document.getElementById(`timerControls_${index}`);
+  controls.innerHTML = `<button id="startButton_${index}">Start</button>`;
+  setTimeout(() => {
+    document.getElementById(`startButton_${index}`).addEventListener("click", () => onStartClick(index));
+  }, 0);
+}
+
+function showPauseButton(index) {
+  const controls = document.getElementById(`timerControls_${index}`);
+  controls.innerHTML = `<button id="pauseButton_${index}">Pause</button>`;
+  setTimeout(() => {
+    document.getElementById(`pauseButton_${index}`).addEventListener("click", () => onPauseClick(index));
+  }, 0);
+}
+
 
 // NCAAB Team Total Event
 export class NCAABTeamEvent extends BaseEvent {
@@ -95,8 +116,10 @@ export class NCAABTeamEvent extends BaseEvent {
         <label for="time_${index}">Time Remaining (MM:SS):</label>
         <input type="text" id="time_${index}" placeholder="e.g., 10:00">
   
+      <div id="timerControls_${index}">
         <button id="startButton_${index}">Start</button>
-        <button id="pauseButton_${index}">Pause</button>
+      </div>
+
   
         ${progressContainer.render()}
       </div>
@@ -132,9 +155,9 @@ export class NCAABGameEvent extends BaseEvent {
           <label for="score1_${index}">Score:</label>
           <input type="number" id="score1_${index}" value="0" placeholder="Enter score">
 
-          <button id="freeThrow1">Free Throw</button>
-          <button id="twoPoints1">2 Pointer</button>
-          <button id="threePoints1">3 Pointer</button>
+          <button id="freeThrow1">☝</button>
+          <button id="twoPoints1">✌</button>
+          <button id="threePoints1">👌</button>
         </div>  
         
         <div id="team2">
@@ -143,9 +166,9 @@ export class NCAABGameEvent extends BaseEvent {
           <label for="score2_${index}">Score:</label>
           <input type="number" id="score2_${index}" value="0" placeholder="Enter score">
 
-          <button id="freeThrow2">Free Throw</button>
-          <button id="twoPoints2">2 Pointer</button>
-          <button id="threePoints2">3 Pointer</button>
+          <button id="freeThrow2">☝</button>
+          <button id="twoPoints2">✌</button>
+          <button id="threePoints2">👌</button>
         </div>
 
         <label for="halfSelect_${index}">Half:</label>
@@ -158,8 +181,9 @@ export class NCAABGameEvent extends BaseEvent {
         <label for="time_${index}">Time Remaining (MM:SS):</label>
         <input type="text" id="time_${index}" placeholder="e.g., 10:00">
 
-        <button id="startButton_${index}">Start</button>
-        <button id="pauseButton_${index}">Pause</button>
+        <div id="timerControls_${index}">
+          <button id="startButton_${index}">Start</button>
+        </div>
 
         ${progressContainer.render()}
       </div>
@@ -168,7 +192,7 @@ export class NCAABGameEvent extends BaseEvent {
     // Bind start and pause button event listeners
     setTimeout(() => {
       document.getElementById(`startButton_${index}`).addEventListener("click", () => onStartClick(index, type, goalValue));
-      document.getElementById(`pauseButton_${index}`).addEventListener("click", () => onPauseClick(index));
+      //document.getElementById(`pauseButton_${index}`).addEventListener("click", () => onPauseClick(index));
       document.getElementById("freeThrow1").addEventListener("click", () => this.addPoints(1,1));
       document.getElementById("twoPoints1").addEventListener("click", () => this.addPoints(1,2));
       document.getElementById("threePoints1").addEventListener("click", () => this.addPoints(1,3));
