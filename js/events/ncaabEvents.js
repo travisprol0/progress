@@ -87,6 +87,16 @@ function showPauseButton(index) {
   }, 0);
 }
 
+const formatTimeInput = (rawValue) => {
+  let digits = rawValue.replace(/\D/g, "");
+  digits = digits.substring(0, 4);
+  if (digits.length === 4) {
+    return digits.substring(0, 2) + ":" + digits.substring(2);
+  } else if (digits. length === 3) {
+    return digits.substring(0, 1) + ":" + digits.substring(2);
+  }
+}
+
 
 // NCAAB Team Total Event
 export class NCAABTeamEvent extends BaseEvent {
@@ -104,7 +114,7 @@ export class NCAABTeamEvent extends BaseEvent {
         <label for="teamName_${index}">Team:</label>
         <span id="teamName_${index}">${this.teamName}</span>
         <label for="score_${index}">Score:</label>
-        <input type="number" id="score_${index}" value="0" placeholder="Enter score">
+        <input type="number" id="score_${index}" value="" placeholder="Enter score" onfocus="this.select()">
   
         <label for="halfSelect_${index}">Half:</label>
         <select id="halfSelect_${index}">
@@ -114,7 +124,7 @@ export class NCAABTeamEvent extends BaseEvent {
         </select>
   
         <label for="time_${index}">Time Remaining (MM:SS):</label>
-        <input type="text" id="time_${index}" placeholder="e.g., 10:00">
+        <input type="text" id="time_${index}" placeholder="e.g., 10:00" onfocus="this.select()">
   
       <div id="timerControls_${index}">
         <button id="startButton_${index}">Start</button>
@@ -153,22 +163,22 @@ export class NCAABGameEvent extends BaseEvent {
         <label for="teamName1_${index}">Team 1:</label>
           <span id="teamName1_${index}">${this.teamName1}</span>
           <label for="score1_${index}">Score:</label>
-          <input type="number" id="score1_${index}" value="0" placeholder="Enter score">
+          <input type="number" id="score1_${index}" value="" placeholder="Enter score" onfocus="this.select()">
 
-          <button id="freeThrow1">☝</button>
-          <button id="twoPoints1">✌</button>
-          <button id="threePoints1">👌</button>
+          <button id="freeThrow1" tabindex="-1">☝</button>
+          <button id="twoPoints1" tabindex="-1">✌</button>
+          <button id="threePoints1" tabindex="-1">👌</button>
         </div>  
         
         <div id="team2">
           <label for="teamName2_${index}">Team 2:</label>
           <span id="teamName2_${index}">${this.teamName2}</span>
           <label for="score2_${index}">Score:</label>
-          <input type="number" id="score2_${index}" value="0" placeholder="Enter score">
+          <input type="number" id="score2_${index}" value="" placeholder="Enter score" onfocus="this.select()">
 
-          <button id="freeThrow2">☝</button>
-          <button id="twoPoints2">✌</button>
-          <button id="threePoints2">👌</button>
+          <button id="freeThrow2" tabindex="-1">☝</button>
+          <button id="twoPoints2" tabindex="-1">✌</button>
+          <button id="threePoints2" tabindex="-1">👌</button>
         </div>
 
         <label for="halfSelect_${index}">Half:</label>
@@ -179,7 +189,7 @@ export class NCAABGameEvent extends BaseEvent {
         </select>
     
         <label for="time_${index}">Time Remaining (MM:SS):</label>
-        <input type="text" id="time_${index}" placeholder="e.g., 10:00">
+        <input type="text" id="time_${index}" placeholder="e.g., 10:00" onfocus="this.select()">
 
         <div id="timerControls_${index}">
           <button id="startButton_${index}">Start</button>
@@ -199,7 +209,8 @@ export class NCAABGameEvent extends BaseEvent {
       document.getElementById("freeThrow2").addEventListener("click", () => this.addPoints(2,1));
       document.getElementById("twoPoints2").addEventListener("click", () => this.addPoints(2,2));
       document.getElementById("threePoints2").addEventListener("click", () => this.addPoints(2,3));
-
+      document.addEventListener("focus", (e => {if (e.target.tagName.toLowerCase() === "input") {e.target.select();}}));
+      //document.getElementById(`time_${index}`).addEventListener('input', (e) => {e.target.value = formatTimeInput(e.target.value);});        
     }, 0);
   
     return html;
